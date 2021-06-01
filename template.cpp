@@ -2,8 +2,11 @@
 #include <cstring>
 #include <math.h>
 #include <algorithm>
-
+#include <assert.h>
 #include <vector>
+#include <set>
+#include <stack>
+#include <queue>
 
 typedef long long ll;
 
@@ -13,14 +16,32 @@ void solve()
 {
 	ll ans(0), sum(0), cnt(0), mx(-1e18), mn(1e18);
 
-	ll n; cin >> n;
+	ll n;
+	cin >> n;
+
+	int a[n];
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+
+	for (int i = 0; i < n; i++)
+	{
+	}
+
+	string s;
+	cin >> s;
+	for (int i = 0; i < s.size(); i++)
+	{
+	}
+
+	cout << ans << endl;
 
 	return;
 }
 
 int main()
 {
-	ll t; cin >> t;
+	ll t;
+	cin >> t;
 
 	while (t--)
 		solve();
