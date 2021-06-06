@@ -8,7 +8,6 @@
 #include <stack>
 #include <queue>
 #include <limits.h>
-
 typedef long long ll;
 
 using namespace std;
