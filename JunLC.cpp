@@ -20,6 +20,7 @@ void solve()
 
 	int a[n], right[n], left[n];
 
+	for (int i = 0; i < n; i++)
 	{
 		cin >> a[i];
 		left[i] = right[i] = INT_MAX;
