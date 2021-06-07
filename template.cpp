@@ -3,6 +3,7 @@
 #include <math.h>
 #include <algorithm>
 #include <assert.h>
+#include <limits.h>
 #include <vector>
 #include <set>
 #include <stack>

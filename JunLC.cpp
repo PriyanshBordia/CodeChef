@@ -18,64 +18,59 @@ void solve()
 
 	ll n, m; cin >> n >> m;
 
-	int a[n + 1]; //a[0] = -1;
-	for (int i = 1; i <= n; i++)
-		cin >> a[i];
+	int a[n], right[n], left[n];
 
-	int b[m + 1];
-	for (int i = 1; i <= m; i++)
+	{
+		cin >> a[i];
+		left[i] = right[i] = INT_MAX;
+	}
+
+	int b[m];
+	for (int i = 0; i < m; i++)
 		cin >> b[i];
 
-	int right[n + 1];
-	int left[n + 1]; 
-	
-	for (int i = 1; i <= n; i++)
+	ll f = 0;	
+	for (int i = 0; i < n; i++)
 	{	
-		left[i] = -1;
+		if (a[i] == 1)
+		{
+			left[i] = 0;
+			f = 1;
+		}
 
-		int j = i;
-		while (j >= 1 && a[j] != 1)
-			j--;
-
-		if (j >= 1)
-			left[i] = j;
+		else if (f)
+		{
+			left[i] = min(left[i], left[i - 1] + 1);
+		}
 	}
 
+	f = 0;
 	for (int i = n; i >= 1; i--)
 	{
-		right[i] = -1;
+		if (a[i] == 2)
+		{
+			right[i] = 0;
+			f = 1;
+		}
 
-		int j = i;
-		while (j <= n && a[j] != 2)
-			j++;
-
-		if (j <= n)
-			right[i] = j;
+		else if (f)
+		{
+			right[i] = min(right[i], right[i + 1] + 1);
+		}
 	}
 
-	for (int i = 1; i <= n; i++)
+	for (int i = 0; i < m; i++)
 	{
-		cout << left[i] << " " << right[i] << endl;
+		ll ans = min(right[b[i] - 1], left[b[i] - 1]);
+
+		if (ans == INT_MAX)
+			ans = -1;
+
+		if (b[i] == 1)
+			ans = 0;
+
+		cout << ans << " ";
 	}
-
-	int c[m + 1];
-	for (int i = 1; i <= m; i++)
-	{
-		if (right[i] == -1 && left[i] == -1)
-			c[i] = -1;
-
-		else if (right[i] != -1 && left[i] == -1)
-			c[i] = right[i] - b[i];
-
-		else if (right[i] == -1 && left[i] != -1)
-			c[i] = b[i] - left[i];
-
-		else
-			c[i] = min(right[i] - b[i], b[i] - left[i]);
-	}	
-
-	for (int i = 1; i <= m; i++)
-		cout << c[i] << " ";
 
 	cout << endl;
 
@@ -92,42 +87,3 @@ int main()
 
 	return 0;
 }
-
-/*
-if (a[b[i]] != 0)
-			c[i] = 0;
-
-		else
-		{
-			int j = b[i];
-			while (j > 0)
-			{
-				if (a[j] == 1)
-				{
-					ans = b[i] - j;
-					break;
-				}
-				j--;
-			}
-
-			j = b[i];
-			while (j <= n)
-			{
-				if (a[j] == 2)
-				{
-					if (ans != 0 && ans > (j - b[i]))
-					{
-						ans = j - b[i];
-						break;
-					}
-				}
-				j++;
-			}
-
-			if (ans == 0)
-				c[i] = -1;
-			else
-				c[i] = ans;
-		}
-
-		*/
